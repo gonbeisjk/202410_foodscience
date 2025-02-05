@@ -10,9 +10,10 @@ add_theme_support('post-thumbnails');
 // document_title_separatorというフィルターの関数を
 // 自分自身で作る関数、my_document_title_separatorに
 // 変える
-add_filter('document_title_separator','my_document_title_separator');
+add_filter('document_title_separator', 'my_document_title_separator');
 // 関数my_document_title_separatorの処理を定義
-function my_document_title_separator($separator){
+function my_document_title_separator($separator)
+{
     // separatorという変数の中身を「|」に定義
     $separator = '|';
     return $separator;
@@ -22,3 +23,9 @@ function my_document_title_separator($separator){
 // 今井、ひそかにfunctions.phpをfunction.phpという名前
 // で間違って記述したために、このファイルの処理が実行さ
 // れていませんでした……皆さんもお気をつけ下さい汗
+
+
+/**
+ * カスタムメニュー機能を使用可能にする
+ */
+add_theme_support('menus');

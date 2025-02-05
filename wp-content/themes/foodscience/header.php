@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -8,19 +9,20 @@
       これさえ記述しておけば、パスが迷子にならない
   -->
 
-  
+
   <!-- 下のphpのwp_enqueue_styleで処理してるので、
   htmlでの以下のlinkタグ3つは不要になる
 -->
-<!-- <link rel="stylesheet" href="<?php //echo get_template_directory_uri(); ?>/assets/css/app.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="<?php //echo get_template_directory_uri(); 
+                                    ?>/assets/css/app.css" type="text/css" /> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"> -->
 
-  <?php 
-                    //('名前','リンクまたはパス')
-    wp_enqueue_style('font-awesome','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css'); 
-    wp_enqueue_style('google-web-fonts','https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-    wp_enqueue_style('food-science-app', get_template_directory_uri().'/assets/css/app.css');
+  <?php
+  //('名前','リンクまたはパス')
+  wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
+  wp_enqueue_style('google-web-fonts', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+  wp_enqueue_style('food-science-app', get_template_directory_uri() . '/assets/css/app.css');
   ?>
 
 
@@ -28,7 +30,8 @@
         htmlでの以下のscriptタグ二つは不要になる
   -->
   <!-- <script type="text/JavaScript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
-  <!-- <script type="text/JavaScript" src="<?php //echo get_template_directory_uri(); ?>/assets/js/main.js"></script> -->
+  <!-- <script type="text/JavaScript" src="<?php //echo get_template_directory_uri(); 
+                                            ?>/assets/js/main.js"></script> -->
 
   <!-- テンプレートタグ -->
   <!-- Wordpressちゃんが用意してくれている関数（命令）
@@ -38,17 +41,18 @@
   <!-- この子はWordpressでサイトタイトルに指定した言葉
       を呼び出すための関数↓
    -->
-  <!-- <title><?php //bloginfo('name'); ?></title> -->
+  <!-- <title><?php //bloginfo('name'); 
+              ?></title> -->
   <!-- ↑今回はfunction.phpに自動生成するコードがあるので、書かなくてもOK！ -->
 
 
   <!-- wp_enqueue_script('jquery'):読み込むjQueryは
     Wordpressが用意したものを一回読み込むだけでいいよ、
     の意と思っていい -->
-  <?php 
-    wp_enqueue_script('jquery');
-                    //('名前','リンクまたはパス')
-    wp_enqueue_script('food-science-main', get_template_directory_uri().'/assets/js/main.js');
+  <?php
+  wp_enqueue_script('jquery');
+  //('名前','リンクまたはパス')
+  wp_enqueue_script('food-science-main', get_template_directory_uri() . '/assets/js/main.js');
   ?>
   <!-- wp_head:Wordpressを使うサイトではheadの閉じタグ
    の直上に、この一言を必ず書きましょう↓　-->
@@ -58,9 +62,10 @@
 <!-- body_class:bodyタグに、閲覧している人の状況に
     あわせたクラスを自動的に作ってくれる
  -->
+
 <body <?php body_class(); ?>>
-    <?php wp_body_open(); ?>
-    <!-- ↑bodyタグの下の部分に何かを挿入するプログラム
+  <?php wp_body_open(); ?>
+  <!-- ↑bodyタグの下の部分に何かを挿入するプログラム
         のための目印のようなもの。記述は任意 
     -->
   <header class="header">
@@ -80,12 +85,14 @@
     <div class="header_nav">
       <div class="header_menu js-menu-icon"><span></span></div>
       <div class="gnav js-menu">
-        <ul>
-          <li><a href="concept.html">コンセプト</a></li>
-          <li><a href="food.html">メニュー</a></li>
-          <li><a href="access.html">アクセス</a></li>
-          <li><a href="category.html">最新情報</a></li>
-        </ul>
+        <?php
+        $args = [
+          'container' => '', //falseでもOK
+          'menu_class' => '', //ナビゲーション自体のクラス名
+          'menu' => 'global-navigation', //呼び出すメニューの名前（管理画面で設定したメニュー名）
+        ];
+        wp_nav_menu($args);
+        ?>
 
         <div class="header_info">
           <form class="header_search">
