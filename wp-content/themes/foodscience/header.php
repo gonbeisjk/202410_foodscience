@@ -95,8 +95,8 @@
         ?>
 
         <div class="header_info">
-          <form class="header_search">
-            <input type="text" aria-label="Search">
+          <form class="header_search" action="<?= home_url('/'); ?>" method="get">
+            <input type="text" aria-label="Search" name="s" value="<?php the_search_query(); ?>">
             <button type="submit"><i class="fas fa-search"></i></button>
           </form>
 
