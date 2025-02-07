@@ -29,6 +29,9 @@
                 <!-- 記事の内容を取得して表示 -->
                 <?php the_content(); ?>
               </div>
+
+              <?php comments_template(); ?>
+
             </div>
 
 
