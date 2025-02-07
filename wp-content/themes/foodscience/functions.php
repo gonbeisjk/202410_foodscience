@@ -56,3 +56,22 @@ function my_shortcode_sample($attr)
   return "<div>{$options['abc']} ショートコードのサンプルです。{$options['xyz']}</div>";
 }
 add_shortcode('my_shortcode', 'my_shortcode_sample'); //1: ショートコード名, 2: 関数名
+
+/**
+ * メインクエリを変更する
+ */
+// 1: アクションフック名, 2: フックに使う関数名
+add_action('pre_get_posts', 'my_pre_get_posts');
+function my_pre_get_posts($query)
+{
+  // 管理画面、メインクエリ以外はクエリの内容を書き換えない
+  if (is_admin() || !$query->is_main_query()) {
+    return; //処理をここでストップ
+  }
+
+  // トップページの場合、取得する投稿数を3件にする
+  if ($query->is_home()) {
+    $query->set('posts_per_page', 3);
+    return;
+  }
+}
