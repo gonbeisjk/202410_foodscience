@@ -14,9 +14,9 @@ add_filter('document_title_separator', 'my_document_title_separator');
 // 関数my_document_title_separatorの処理を定義
 function my_document_title_separator($separator)
 {
-    // separatorという変数の中身を「|」に定義
-    $separator = '|';
-    return $separator;
+  // separatorという変数の中身を「|」に定義
+  $separator = '|';
+  return $separator;
 }
 
 
@@ -36,5 +36,23 @@ add_theme_support('menus');
 add_filter('wpcf7_autop_or_not', 'my_wpcf7_autop');
 function my_wpcf7_autop()
 {
-    return false;
+  return false;
 }
+
+
+/**
+ * ショートコードのサンプル
+ */
+function my_shortcode_sample($attr)
+{
+  // デフォルトの値を設定する。上書きも行う。
+  // 1: デフォルト値, 2: 上書きする値
+  $options = shortcode_atts([
+    'abc' => 'abcのデフォルト値',
+    'xyz' => 'xyzのデフォルト値',
+  ], $attr);
+
+  // var_dump($attr);
+  return "<div>{$options['abc']} ショートコードのサンプルです。{$options['xyz']}</div>";
+}
+add_shortcode('my_shortcode', 'my_shortcode_sample'); //1: ショートコード名, 2: 関数名
