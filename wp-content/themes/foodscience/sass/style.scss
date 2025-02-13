@@ -1,0 +1,34 @@
+/*CSSのコメント*/
+// @use 'vars';
+// @use 'vars' as v; // varsをvとして扱う
+@use 'vars' as *; // 接頭辞必要なし
+@use 'mixin' as *;
+
+// CSS変数
+:root {
+  --second-color: blue;
+}
+
+p {
+  font-size: 2rem;
+  // color: vars.$main-color;
+  // color: v.$main-color;
+  color: $main-color;
+
+  span {
+    font-weight: bold;
+
+    em {
+      // color: vars.$main-color;
+      // color: v.$main-color;
+      color: $main-color;
+
+      background: var(--second-color);
+    }
+  }
+}
+
+.content-sample {
+  // mixinを使用する
+  @include content;
+}

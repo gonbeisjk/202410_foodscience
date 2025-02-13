@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/*CSSのコメント*/
+:root {
+  --second-color: blue;
+}
+
+p {
+  font-size: 2rem;
+  color: orange;
+}
+p span {
+  font-weight: bold;
+}
+p span em {
+  color: orange;
+  background: var(--second-color);
+}
+
+.content-sample p {
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
+.content-sample h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.content-sample a {
+  color: pink;
+  text-decoration: none;
+}/*# sourceMappingURL=style.css.map */
