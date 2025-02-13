@@ -21,12 +21,33 @@
             </h3>
             <ul class="foodList">
 
-              <?php if (have_posts()): ?>
-                <?php while (have_posts()): the_post(); ?>
+              <?php
+              // カスタムのクエリを作成
+              $args = [
+                'post_type' => 'food', //投稿タイプ「フード」を指定
+                'posts_per_page' => -1, //全件取得する
+                // 👇タクソノミー関連の指定
+                'tax_query' => [
+                  'relation' => 'AND', //(必須) 以下に指定する条件のすべてに合致したもの
+                  // 1つ目の条件
+                  [
+                    'taxonomy' => 'menu', // タクソノミーのスラッグを指定
+                    'field' => 'slug', // 検索するフィールド(スラッグ)を指定。他にはterm_id(ID), name(名前), slug(スラッグ)などが指定可能。
+                    'terms' => $menu->slug,
+                  ],
+                ],
+              ];
+              $the_query = new WP_Query($args);
+              ?>
+
+              <?php if ($the_query->have_posts()): ?>
+                <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
                   <li class="foodList_item">
                     <?php get_template_part('template-parts/loop-food'); ?>
                   </li>
                 <?php endwhile; ?>
+                <?php wp_reset_postdata(); // $postの内容をメインクエリのものに戻す 
+                ?>
               <?php endif; ?>
 
             </ul>
