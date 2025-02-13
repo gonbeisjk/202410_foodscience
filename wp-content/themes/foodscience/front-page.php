@@ -19,11 +19,56 @@
       <p class="kv_subtitle">FROM JAPAN</p>
     </div>
 
-    <div class="kv_slider js-slider">
-      <div class="kv_sliderItem" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/home/kv-01@2x.jpg');"></div>
-      <div class="kv_sliderItem" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/home/kv-02@2x.jpg');"></div>
-      <div class="kv_sliderItem" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/home/kv-03@2x.jpg');"></div>
-    </div>
+    <?php
+    $args = [
+      'post_type' => 'main-visual',
+      'posts_per_page' => -1,
+
+      // カスタムフィールドの条件を指定する
+      'meta_query' => [
+        // 3つの条件のいずれかに合致したものを取得
+        // 条件1: 公開終了日が未来のもの
+        // 条件2: 公開終了日が空（設定されていない）のもの
+        // 条件3: 公開終了日が存在しない
+        'relation' => 'OR',
+
+        // 条件1
+        [
+          'key' => 'end_date', // 公開終了日時
+          'type' => 'DATETIME',
+          'compare' => '>',
+          'value' => date('Y-m-d H:i:s'), // 現在の日時
+        ],
+
+        // 条件2
+        [
+          'key' => 'end_date',
+          'value' => '', // 空
+          // 'compare' => '=', //デフォルトは「=」(〜と等しい)
+          // 'type' => 'CHAR', //デフォルトは「CHAR」(文字列)
+        ],
+
+        // 条件3
+        [
+          'key' => 'end_date',
+          'compare' => 'NOT EXISTS', // 存在しない
+        ]
+      ],
+    ];
+    $the_query = new WP_Query($args);
+    ?>
+    <?php if ($the_query->have_posts()): ?>
+      <div class="kv_slider js-slider">
+        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+          <?php
+          $pic = get_field('pic');
+          ?>
+          <div class="kv_sliderItem" style="background-image: url('<?= $pic['url']; ?>');"></div>
+        <?php endwhile; ?>
+        <?php wp_reset_postdata(); ?>
+      </div>
+    <?php endif; ?>
+
     <div class="kv_overlay"></div>
 
     <div class="kv_scroll">
