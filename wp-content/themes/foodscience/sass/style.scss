@@ -3,6 +3,7 @@
 // @use 'vars' as v; // varsをvとして扱う
 @use 'vars' as *; // 接頭辞必要なし
 @use 'mixin' as *;
+@forward 'about';
 
 // CSS変数
 :root {
@@ -31,4 +32,33 @@ p {
 .content-sample {
   // mixinを使用する
   @include content;
+}
+
+// 親セレクタの参照
+.card {
+  border: 1px solid #ccc;
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &--primary {
+    background-color: orange;
+  }
+}
+
+.media-sample {
+  max-width: 400px;
+
+  // デスクトップ
+  @include mediaquery(600px) {
+    max-width: 800px;
+  }
+}
+
+.media-sample2 {
+  @include mediaquery {
+    background-color: blue;
+  }
 }

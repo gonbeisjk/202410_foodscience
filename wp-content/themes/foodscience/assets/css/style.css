@@ -1,5 +1,10 @@
 @charset "UTF-8";
 /*CSSのコメント*/
+.about h2 {
+  font-size: 3rem;
+  font-weight: semibold;
+}
+
 :root {
   --second-color: blue;
 }
@@ -27,4 +32,31 @@ p span em {
 .content-sample a {
   color: pink;
   text-decoration: none;
+}
+
+.card {
+  border: 1px solid #ccc;
+}
+.card__img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card--primary {
+  background-color: orange;
+}
+
+.media-sample {
+  max-width: 400px;
+}
+@media screen and (min-width: 600px) {
+  .media-sample {
+    max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .media-sample2 {
+    background-color: blue;
+  }
 }/*# sourceMappingURL=style.css.map */
