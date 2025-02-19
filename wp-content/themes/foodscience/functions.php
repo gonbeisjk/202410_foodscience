@@ -124,3 +124,24 @@ function my_editor_support()
   add_theme_support('editor-styles');
   add_editor_style('assets/css/editor-style.css');
 }
+
+/**
+ * 表示するブロックをコントロールする
+ */
+// 第3引数: 優先度(10がデフォルト), 第4引数: 関数に渡す引数の数(1がデフォルト)
+add_filter('allowed_block_types_all', 'my_allowed_block_types_all', 10, 2);
+function my_allowed_block_types_all($allowed_blocks, $editor_context)
+{
+  $allowed_blocks = [
+    'core/heading', //見出し
+    'core/paragraph', //段落
+    'core/list', //リスト
+  ];
+
+  // 固定ページのみ
+  if ($editor_context->post->post_type === 'page') {
+    $allowed_blocks[] = 'core/image'; //画像
+  }
+
+  return $allowed_blocks;
+}
