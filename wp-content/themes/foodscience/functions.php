@@ -145,3 +145,15 @@ function my_allowed_block_types_all($allowed_blocks, $editor_context)
 
   return $allowed_blocks;
 }
+
+
+/**
+ * 管理者の権限グループを設定する
+ */
+add_action('admin_init', 'my_admin_init');
+function my_admin_init()
+{
+  $role = get_role('administrator');
+  // 権限の削除
+  $role->remove_cap('delete_others_posts'); //他の投稿者の投稿を削除　を削除
+}
