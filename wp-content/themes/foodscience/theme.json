@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "layout": {
+      "contentSize": "800px",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "palette": [
+        {
+          "name": "Red",
+          "slug": "red",
+          "color": "#e60033"
+        },
+        {
+          "name": "Blue",
+          "slug": "blue",
+          "color": "#004be1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "name": "游明朝体",
+          "slug": "micho-font",
+          "fontFamily": "'游明朝体', 'Yu Mincho','YuMincho', 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', serif"
+        },
+        {
+          "name": "Caveat",
+          "slug": "cursive",
+          "fontFamily": "'Caveat', cursive",
+          "fontFace": [
+            {
+              "fontFamily": "Caveat",
+              "fontWeight": "bold",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "fontDisplay": "swap",
+              "src": [
+                "https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2QRah7pcpNvOx-pjfJ9eIWpYT5Kmgq3sw.woff2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {},
+  "patterns": [
+    "intro-area-with-heading-and-image-ja",
+    "pricing-table-ja"
+  ],
+  "customTemplates": [],
+  "templateParts": []
+}

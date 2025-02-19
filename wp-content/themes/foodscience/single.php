@@ -1,6 +1,6 @@
 <?php get_header(); ?><!-- header.php読み込み -->
 
-<main>
+<main <?php if (wp_theme_has_theme_json()): ?>class="is-full" <?php endif; ?>>
   <div class="section">
     <div class="section_inner">
       <!-- if文：もし記事があったら -->

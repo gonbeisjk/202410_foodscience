@@ -2,7 +2,7 @@
 
 <?php if (have_posts()): ?>
   <?php while (have_posts()): the_post(); ?>
-    <main>
+    <main <?php if (wp_theme_has_theme_json()): ?>class="is-full" <?php endif; ?>>
       <section class="section">
         <div class="section_inner">
           <div class="section_header">
